@@ -1,15 +1,11 @@
 " Example Vim graphical configuration.
 " Copy to ~/.gvimrc or ~/_gvimrc.
 
-set guifont=Monaco:h14            " Font family and font size.
-set antialias                     " MacVim: smooth fonts.
-set encoding=utf-8                " Use UTF-8 everywhere.
+set guifont=Menlo\ Regular:h14
+set linespace =2
+set antialias
+
+set encoding=utf-8
 set guioptions-=T                 " Hide toolbar.
-set background=light              " Background.
-set lines=100 columns=150          " Window dimensions.
+set guioptions-=r                 " Don't show right scrollbar
 colorscheme vividchalk
-
-" Uncomment to use.
-" set guioptions-=r                 " Don't show right scrollbar
-
-
