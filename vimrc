@@ -1,62 +1,80 @@
-set nocompatible                  " Must come first because it changes other options.
-set encoding=utf-8
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Install
+"git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"
+"Command T Install
+"cd Command-T/ruby/command-t/
+"/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby extconf.rb
+"make
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set nocompatible
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Vundle
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'wincent/Command-T.git'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'rking/ag.vim'
+Bundle 'skalnik/vim-vroom'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-rvm'
+
+filetype plugin indent on
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"General Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable on                  " Turn on syntax highlighting.
-filetype plugin indent on         " Turn on file type detection.
+colorscheme solarized
 
-runtime macros/matchit.vim        " Load the matchit plugin.
-
-set showcmd                       " Display incomplete commands.
-set showmode                      " Display the mode you're in.
-
-set backspace=indent,eol,start    " Intuitive backspacing.
-
-set hidden                        " Handle multiple buffers better.
-
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
-
-set ignorecase                    " Case-insensitive searching.
-set smartcase                     " But case-sensitive if expression contains a capital letter.
-
-set number                        " Show line numbers.
-set ruler                         " Show cursor position.
-
-set incsearch                     " Highlight matches as you type.
-set hlsearch                      " Highlight matches.
-
-set wrap                          " Turn on line wrapping.
-set scrolloff=3                   " Show 3 lines of context around the cursor.
-
-set title                         " Set the terminal's title
-
-set visualbell                    " No beeping.
-
-set nobackup                      " Don't make a backup before overwriting a file.
-set nowritebackup                 " And again.
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
-
-" Store temporary files in a central spot
+set autoindent                    " Copy indent from current line when starting a new line
+set background=dark
+set backspace=indent,eol,start    " Allow backspacing over autoindent, line breaks, & start of insert
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-
-" UNCOMMENT TO USE
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
-set softtabstop=2
-set expandtab                    " Use spaces instead of tabs
-set smartindent
-set autoindent
-
-set laststatus=2                  " Show the status line all the time
-" Useful status information at bottom of screen
+set encoding=utf-8
+set expandtab                     " Use spaces instead of tabs
+set hidden                        " Buffer becomes hidden when it is |abandon|ed
+set hlsearch                      " Highlight matches.
+set ignorecase                    " Case-insensitive searching.
+set incsearch                     " Highlight matches as you type.
+set laststatus=2                  " Always show the status line on the last window
+set number                        " Show line numbers.
+set ruler                         " Show cursor position.
+set scrolloff=3                   " Display 3 lines of context around the cursor.
+set shell=bash                    " This makes RVM work inside Vim. I have no idea why
+set shiftwidth=2                  " Number of spaces to use for each step of (auto)indent <<, >>
+set smartcase                     " Case-sensitive if search expression contains a capital letter.
+set showcmd                       " Display inprogress commands.
+set smartindent                   " Do smart autoindenting when starting a new line
+set showmode                      " Display the mode you're in (INSERT, VISUAL).
+set softtabstop=2                 " Number of spaces that a <Tab> counts for while performing editing operations
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set tabstop=2                     " Global tab width.
+set title                         " Display the terminal's title
+set visualbell                    " No beeping.
+set wildmenu                      " Autocomplete for vim commands
+set wildmode=list:longest         " When more than one match, list all matches & complete till longest string
+set wrap                          " Turn on line wrapping.
 
-colorscheme railscasts
 let mapleader = ","
 
-" Tab mappings.
+"Tab mappings
 map <leader>tt :tabnew<cr>
 map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
@@ -66,34 +84,30 @@ map <leader>tp :tabprevious<cr>
 map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
+map <leader>ag :Ag 
 
-"Install Pathogen for managing plugins
-call pathogen#infect()
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Highlight trailing whitespace in red
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set listchars=tab:»·,trail:·
 set list
 hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Switch between two files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader><leader> <c-^>
 
-" Clear the search buffer when hitting return
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Clear the search buffer when hitting return
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! MapCR()
   nnoremap <cr> :nohlsearch<cr>
 endfunction
 call MapCR()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ARROW KEYS ARE UNACCEPTABLE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
+"MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>gr :topleft :split config/routes.rb<cr>
 function! ShowRoutes()
@@ -113,15 +127,36 @@ function! ShowRoutes()
   :normal dd
 endfunction
 map <leader>gR :call ShowRoutes()<cr>
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
-"map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
-"map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-"map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+
+map <leader>ac :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>ad :CommandTFlush<cr>\|:CommandT app/decorators<cr>
+map <leader>ah :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>ai :CommandTFlush<cr>\|:CommandT app/interactors<cr>
+map <leader>ajc :CommandTFlush<cr>\|:CommandT app/assets/javascripts/controllers<cr>
+map <leader>ajd :CommandTFlush<cr>\|:CommandT app/assets/javascripts/directives<cr>
+map <leader>ajm :CommandTFlush<cr>\|:CommandT app/assets/javascripts/models<cr>
+map <leader>ajs :CommandTFlush<cr>\|:CommandT app/assets/javascripts/services<cr>
+map <leader>am :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>as :CommandTFlush<cr>\|:CommandT app/serializers<cr>
+map <leader>au :CommandTFlush<cr>\|:CommandT app/uploaders<cr>
+map <leader>aw :CommandTFlush<cr>\|:CommandT app/workers<cr>
+map <leader>av :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>ci :CommandTFlush<cr>\|:CommandT config/intializers<cr>
+map <leader>lt :CommandTFlush<cr>\|:CommandT lib/tasks<cr>
+map <leader>gf :topleft 100 :split Gemfile<cr>
+map <leader>tc :CommandTFlush<cr>\|:CommandT spec/controllers<cr>
+map <leader>td :CommandTFlush<cr>\|:CommandT spec/decorators<cr>
+map <leader>th :CommandTFlush<cr>\|:CommandT spec/helpers<cr>
+map <leader>ti :CommandTFlush<cr>\|:CommandT spec/interactors<cr>
+map <leader>tm :CommandTFlush<cr>\|:CommandT spec/models<cr>
+map <leader>ts :CommandTFlush<cr>\|:CommandT spec/serializers<cr>
+map <leader>tu :CommandTFlush<cr>\|:CommandT spec/uploaders<cr>
+map <leader>tw :CommandTFlush<cr>\|:CommandT spec/workers<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap CTAGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>mc :!/usr/local/bin/ctags -R --exclude=.git --exclude=log * ~/.rvm/gems/ruby-2.0.0-p353@momcorp*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
@@ -167,5 +202,5 @@ inoremap <s-tab> <c-n>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Customize Vroom Plugin for tests
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vroom_use_bundle_exec = 0
-let g:vroom_spec_command = 'foreman run rspec'
+let g:vroom_use_bundle_exec = 1
+let g:vroom_spec_command = 'rspec'
