@@ -1,11 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Install
 "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"
-"Command T Install
-"cd Command-T/ruby/command-t/
-"/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby extconf.rb
-"make
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set nocompatible
@@ -20,10 +15,11 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
-Bundle 'wincent/Command-T.git'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-ruby/vim-ruby'
+Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
 Bundle 'rking/ag.vim'
 Bundle 'skalnik/vim-vroom'
 Bundle 'terryma/vim-multiple-cursors'
@@ -33,8 +29,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rvm'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
+Bundle 'vim-ruby/vim-ruby'
 
 filetype plugin indent on
 
@@ -110,53 +105,6 @@ endfunction
 call MapCR()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>gr :topleft :split config/routes.rb<cr>
-function! ShowRoutes()
-  " Requires 'scratch' plugin
-  :topleft 100 :split __Routes__
-  " Make sure Vim doesn't write __Routes__ as a file
-  :set buftype=nofile
-  " Delete everything
-  :normal 1GdG
-  " Put routes output in buffer
-  :0r! bundle exec rake -s routes
-  " Size window to number of lines (1 plus rake output length)
-  :exec ":normal " . line("$") . "_ "
-  " Move cursor to bottom
-  :normal 1GG
-  " Delete empty trailing line
-  :normal dd
-endfunction
-map <leader>gR :call ShowRoutes()<cr>
-
-map <leader>ac :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>ad :CommandTFlush<cr>\|:CommandT app/decorators<cr>
-map <leader>ah :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>ai :CommandTFlush<cr>\|:CommandT app/interactors<cr>
-map <leader>ajc :CommandTFlush<cr>\|:CommandT app/assets/javascripts/controllers<cr>
-map <leader>ajd :CommandTFlush<cr>\|:CommandT app/assets/javascripts/directives<cr>
-map <leader>ajm :CommandTFlush<cr>\|:CommandT app/assets/javascripts/models<cr>
-map <leader>ajs :CommandTFlush<cr>\|:CommandT app/assets/javascripts/services<cr>
-map <leader>am :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>as :CommandTFlush<cr>\|:CommandT app/serializers<cr>
-map <leader>au :CommandTFlush<cr>\|:CommandT app/uploaders<cr>
-map <leader>aw :CommandTFlush<cr>\|:CommandT app/workers<cr>
-map <leader>av :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>ci :CommandTFlush<cr>\|:CommandT config/intializers<cr>
-map <leader>lt :CommandTFlush<cr>\|:CommandT lib/tasks<cr>
-map <leader>gf :topleft 100 :split Gemfile<cr>
-map <leader>tc :CommandTFlush<cr>\|:CommandT spec/controllers<cr>
-map <leader>td :CommandTFlush<cr>\|:CommandT spec/decorators<cr>
-map <leader>th :CommandTFlush<cr>\|:CommandT spec/helpers<cr>
-map <leader>ti :CommandTFlush<cr>\|:CommandT spec/interactors<cr>
-map <leader>tm :CommandTFlush<cr>\|:CommandT spec/models<cr>
-map <leader>ts :CommandTFlush<cr>\|:CommandT spec/serializers<cr>
-map <leader>tu :CommandTFlush<cr>\|:CommandT spec/uploaders<cr>
-map <leader>tw :CommandTFlush<cr>\|:CommandT spec/workers<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dash
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>dw :Dash!<cr>
@@ -214,3 +162,57 @@ inoremap <s-tab> <c-n>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vroom_use_bundle_exec = 1
 let g:vroom_spec_command = 'rspec'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Generate Rails Routes
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>gr :topleft :split config/routes.rb<cr>
+function! ShowRoutes()
+  " Requires 'scratch' plugin
+  :topleft 100 :split __Routes__
+  " Make sure Vim doesn't write __Routes__ as a file
+  :set buftype=nofile
+  " Delete everything
+  :normal 1GdG
+  " Put routes output in buffer
+  :0r! bundle exec rake -s routes
+  " Size window to number of lines (1 plus rake output length)
+  :exec ":normal " . line("$") . "_ "
+  " Move cursor to bottom
+  :normal 1GG
+  " Delete empty trailing line
+  :normal dd
+endfunction
+
+map <leader>gR :call ShowRoutes()<cr>
+map <leader>gf :topleft 100 :split Gemfile<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"MAPS TO JUMP TO SPECIFIC CTRL-P TARGETS AND FILES
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_cmd = 'CtrlP'
+
+map <leader>ac :CtrlP app/controllers<cr>
+map <leader>ad :CtrlP app/decorators<cr>
+map <leader>ah :CtrlP app/helpers<cr>
+map <leader>ai :CtrlP app/interactors<cr>
+map <leader>ajc :CtrlP app/assets/javascripts/controllers<cr>
+map <leader>ajd :CtrlP app/assets/javascripts/directives<cr>
+map <leader>ajm :CtrlP app/assets/javascripts/models<cr>
+map <leader>ajs :CtrlP app/assets/javascripts/services<cr>
+map <leader>am :CtrlP app/models<cr>
+map <leader>as :CtrlP app/serializers<cr>
+map <leader>au :CtrlP app/uploaders<cr>
+map <leader>aw :CtrlP app/workers<cr>
+map <leader>av :CtrlP app/views<cr>
+map <leader>ci :CtrlP config/intializers<cr>
+map <leader>lt :CtrlP lib/tasks<cr>
+map <leader>tc :CtrlP spec/controllers<cr>
+map <leader>td :CtrlP spec/decorators<cr>
+map <leader>th :CtrlP spec/helpers<cr>
+map <leader>ti :CtrlP spec/interactors<cr>
+map <leader>tm :CtrlP spec/models<cr>
+map <leader>ts :CtrlP spec/serializers<cr>
+map <leader>tu :CtrlP spec/uploaders<cr>
+map <leader>tw :CtrlP spec/workers<cr>
