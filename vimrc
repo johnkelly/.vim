@@ -26,12 +26,15 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rking/ag.vim'
 Bundle 'skalnik/vim-vroom'
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rvm'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
 
 filetype plugin indent on
 
@@ -152,6 +155,13 @@ map <leader>tm :CommandTFlush<cr>\|:CommandT spec/models<cr>
 map <leader>ts :CommandTFlush<cr>\|:CommandT spec/serializers<cr>
 map <leader>tu :CommandTFlush<cr>\|:CommandT spec/uploaders<cr>
 map <leader>tw :CommandTFlush<cr>\|:CommandT spec/workers<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Dash
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>dw :Dash!<cr>
+map <leader>dl :Dash 
+map <leader>dg :Dash! 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap CTAGS
