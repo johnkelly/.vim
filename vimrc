@@ -16,6 +16,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'dockyard/vim-easydir'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rizzatti/funcoo.vim'
@@ -192,6 +193,7 @@ map <leader>gf :topleft 100 :split Gemfile<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 0
 
 map <leader>ac :CtrlP app/controllers<cr>
 map <leader>ad :CtrlP app/decorators<cr>
