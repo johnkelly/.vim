@@ -194,6 +194,7 @@ map <leader>gf :topleft 100 :split Gemfile<cr>
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_show_hidden = 1
 
 map <leader>ac :CtrlP app/controllers<cr>
 map <leader>ad :CtrlP app/decorators<cr>
