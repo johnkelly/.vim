@@ -32,6 +32,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rvm'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'ngmy/vim-rubocop'
+Bundle 'shutnik/jshint2.vim'
 
 filetype plugin indent on
 
@@ -220,9 +221,16 @@ map <leader>tm :CtrlP spec/models<cr>
 map <leader>ts :CtrlP spec/serializers<cr>
 map <leader>tu :CtrlP spec/uploaders<cr>
 map <leader>tw :CtrlP spec/workers<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "RuboCop
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimrubocop_keymap = 0
 let g:vimrubocop_extra_args = '-R'
 nmap <Leader>ru :RuboCop<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"JSHint
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let jshint2_save = 1
+nmap <Leader>rj :JSHint<CR>
