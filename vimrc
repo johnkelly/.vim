@@ -226,7 +226,7 @@ map <leader>tw :CtrlP spec/workers<cr>
 "RuboCop
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimrubocop_keymap = 0
-let g:vimrubocop_extra_args = '-R'
+let g:vimrubocop_extra_args = '-R --require rubocop-rspec'
 nmap <Leader>ru :RuboCop<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
