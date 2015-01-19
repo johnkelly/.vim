@@ -18,7 +18,6 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'dockyard/vim-easydir'
 Bundle 'kien/ctrlp.vim'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
 Bundle 'rking/ag.vim'
@@ -30,9 +29,12 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-fireplace'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'ngmy/vim-rubocop'
 Bundle 'shutnik/jshint2.vim'
+Bundle 'eapache/rainbow_parentheses.vim'
+Bundle 'gregspurrier/vim-midje'
 
 filetype plugin indent on
 
@@ -234,3 +236,28 @@ nmap <Leader>ru :RuboCop<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let jshint2_save = 1
 nmap <Leader>rj :JSHint<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Clojure Rainbow Parens
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rbpt_colorpairs = [
+      \ ['brown',       'RoyalBlue3'],
+      \ ['Darkblue',    'SeaGreen3'],
+      \ ['darkgray',    'DarkOrchid3'],
+      \ ['darkgreen',   'firebrick3'],
+      \ ['darkcyan',    'RoyalBlue3'],
+      \ ['darkred',     'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['brown',       'firebrick3'],
+      \ ['gray',        'RoyalBlue3'],
+      \ ['black',       'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['Darkblue',    'firebrick3'],
+      \ ['darkgreen',   'RoyalBlue3'],
+      \ ['darkcyan',    'SeaGreen3'],
+      \ ['darkred',     'DarkOrchid3'],
+      \ ['red',         'firebrick3'],
+      \ ]
+let g:rbpt_max = 15
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
