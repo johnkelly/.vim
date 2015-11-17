@@ -35,6 +35,7 @@ Bundle 'ngmy/vim-rubocop'
 Bundle 'shutnik/jshint2.vim'
 Bundle 'eapache/rainbow_parentheses.vim'
 Bundle 'gregspurrier/vim-midje'
+Bundle 'fatih/vim-go'
 
 filetype plugin indent on
 
@@ -42,7 +43,6 @@ filetype plugin indent on
 "General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable on                  " Turn on syntax highlighting.
-colorscheme solarized
 
 set autoindent                    " Copy indent from current line when starting a new line
 set background=dark
@@ -92,9 +92,9 @@ map <leader>ag :Ag
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Highlight trailing whitespace in red
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set listchars=tab:»·,trail:·
-set list
-hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
+" set listchars=tab:»·,trail:·
+" set list
+" hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Switch between two files
