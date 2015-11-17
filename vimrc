@@ -18,30 +18,43 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'dockyard/vim-easydir'
 Bundle 'kien/ctrlp.vim'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
 Bundle 'rking/ag.vim'
-Bundle 'skalnik/vim-vroom'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/matchit.zip'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-commentary'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Ruby
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rvm'
-Bundle 'tpope/vim-fireplace'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'ngmy/vim-rubocop'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"JS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'shutnik/jshint2.vim'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Clojure
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'tpope/vim-fireplace'
 Bundle 'eapache/rainbow_parentheses.vim'
 Bundle 'gregspurrier/vim-midje'
-Bundle 'fatih/vim-go'
 
-filetype plugin indent on
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Golang 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'fatih/vim-go'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype plugin indent on
+
 syntax enable on                  " Turn on syntax highlighting.
 
 set autoindent                    " Copy indent from current line when starting a new line
@@ -77,16 +90,9 @@ set wrap                          " Turn on line wrapping.
 
 let mapleader = ","
 
-"Tab mappings
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Silver searcher
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>ag :Ag 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -108,18 +114,6 @@ function! MapCR()
   nnoremap <cr> :nohlsearch<cr>
 endfunction
 call MapCR()
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Dash
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>dw :Dash!<cr>
-map <leader>dl :Dash 
-map <leader>dg :Dash! 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap CTAGS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>mc :!/usr/local/bin/ctags -R --exclude=.git --exclude=log * ~/.rvm/gems/ruby-2.0.0-p353@momcorp*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
@@ -163,36 +157,6 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Customize Vroom Plugin for tests
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vroom_use_bundle_exec = 1
-let g:vroom_spec_command = 'rspec'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Generate Rails Routes
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>gr :topleft :split config/routes.rb<cr>
-function! ShowRoutes()
-  " Requires 'scratch' plugin
-  :topleft 100 :split __Routes__
-  " Make sure Vim doesn't write __Routes__ as a file
-  :set buftype=nofile
-  " Delete everything
-  :normal 1GdG
-  " Put routes output in buffer
-  :0r! bundle exec rake -s routes
-  " Size window to number of lines (1 plus rake output length)
-  :exec ":normal " . line("$") . "_ "
-  " Move cursor to bottom
-  :normal 1GG
-  " Delete empty trailing line
-  :normal dd
-endfunction
-
-map <leader>gR :call ShowRoutes()<cr>
-map <leader>gf :topleft 100 :split Gemfile<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "MAPS TO JUMP TO SPECIFIC CTRL-P TARGETS AND FILES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = '<leader>t'
@@ -201,41 +165,29 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_show_hidden = 1
 
 map <leader>ac :CtrlP app/controllers<cr>
-map <leader>ad :CtrlP app/decorators<cr>
-map <leader>ah :CtrlP app/helpers<cr>
 map <leader>ai :CtrlP app/interactors<cr>
-map <leader>ajc :CtrlP app/assets/javascripts/controllers<cr>
-map <leader>ajd :CtrlP app/assets/javascripts/directives<cr>
-map <leader>ajm :CtrlP app/assets/javascripts/models<cr>
-map <leader>ajs :CtrlP app/assets/javascripts/services<cr>
 map <leader>am :CtrlP app/models<cr>
 map <leader>as :CtrlP app/serializers<cr>
-map <leader>au :CtrlP app/uploaders<cr>
 map <leader>aw :CtrlP app/workers<cr>
 map <leader>av :CtrlP app/views<cr>
-map <leader>ci :CtrlP config/intializers<cr>
-map <leader>lt :CtrlP lib/tasks<cr>
 map <leader>tc :CtrlP spec/controllers<cr>
-map <leader>td :CtrlP spec/decorators<cr>
-map <leader>th :CtrlP spec/helpers<cr>
 map <leader>ti :CtrlP spec/interactors<cr>
 map <leader>tm :CtrlP spec/models<cr>
 map <leader>ts :CtrlP spec/serializers<cr>
-map <leader>tu :CtrlP spec/uploaders<cr>
 map <leader>tw :CtrlP spec/workers<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "RuboCop
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimrubocop_keymap = 0
-let g:vimrubocop_extra_args = '-R --require rubocop-rspec'
+let g:vimrubocop_extra_args = '-R --require rubocop-rspec -a'
 nmap <Leader>ru :RuboCop<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "JSHint
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let jshint2_save = 1
-nmap <Leader>rj :JSHint<CR>
+let jshint2_save = 0
+nmap <Leader>js :JSHint<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Clojure Rainbow Parens
@@ -261,3 +213,16 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 15
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Vim GO
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>gd :GoDef<CR>
+nmap <Leader>gp :GoPath<CR>
+nmap <Leader>gl :GoMetaLinter<CR>
+nmap <Leader>gv :GoVet<CR>
+nmap <Leader>ge :GoErrCheck<CR>
+nmap <Leader>gp :GoPlay<CR>
+nmap <Leader>gt :GoTest<CR>
+
+let g:go_fmt_command = "goimports"
