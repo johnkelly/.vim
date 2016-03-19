@@ -22,6 +22,7 @@ Bundle 'rking/ag.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'tpope/vim-commentary'
+Bundle 'janko-m/vim-test'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "GIT
@@ -55,6 +56,11 @@ Bundle 'gregspurrier/vim-midje'
 "Golang 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'fatih/vim-go'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Elixir
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'elixir-lang/vim-elixir'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "General Settings
@@ -169,6 +175,9 @@ let g:ctrlp_map = '<leader>t'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+      \ 'dir': '\v[\/]\.(dep)$',
+      \ }
 
 map <leader>ac :CtrlP app/controllers<cr>
 map <leader>ai :CtrlP app/interactors<cr>
@@ -232,3 +241,12 @@ nmap <Leader>gp :GoPlay<CR>
 nmap <Leader>gt :GoTest<CR>
 
 let g:go_fmt_command = "goimports"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Vim Test
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <leader>TN :TestNearest<CR>
+nmap <silent> <leader>TF :TestFile<CR>
+nmap <silent> <leader>TS :TestSuite<CR>
+nmap <silent> <leader>TL :TestLast<CR>
+nmap <silent> <leader>TV :TestVisit<CR>
