@@ -13,54 +13,55 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'dockyard/vim-easydir'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'tpope/vim-commentary'
-Bundle 'janko-m/vim-test'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'dockyard/vim-easydir'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'tpope/vim-commentary'
+Plugin 'janko-m/vim-test'
+Plugin 'vim-airline/vim-airline'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "GIT
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'tpope/vim-fugitive'
-
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Ruby
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rvm'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'ngmy/vim-rubocop'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rvm'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'ngmy/vim-rubocop'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "JS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'shutnik/jshint2.vim'
+Plugin 'shutnik/jshint2.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Clojure
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'tpope/vim-fireplace'
-Bundle 'eapache/rainbow_parentheses.vim'
-Bundle 'gregspurrier/vim-midje'
+Plugin 'tpope/vim-fireplace'
+Plugin 'eapache/rainbow_parentheses.vim'
+Plugin 'gregspurrier/vim-midje'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Golang 
+"Golang
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'fatih/vim-go'
+Plugin 'fatih/vim-go'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Elixir
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'elixir-lang/vim-elixir'
+Plugin 'elixir-lang/vim-elixir'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "General Settings
@@ -90,9 +91,11 @@ set shiftwidth=2                  " Number of spaces to use for each step of (au
 set smartcase                     " Case-sensitive if search expression contains a capital letter.
 set showcmd                       " Display inprogress commands.
 set smartindent                   " Do smart autoindenting when starting a new line
+set shortmess+=A                  " Prevent annoying 'swap file already exists -> delete' prompt
 set showmode                      " Display the mode you're in (INSERT, VISUAL).
 set softtabstop=2                 " Number of spaces that a <Tab> counts for while performing editing operations
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set statusline+=%{fugitive#statusline()} "  Git Hotness
 set tabstop=2                     " Global tab width.
 set title                         " Display the terminal's title
 set visualbell                    " No beeping.
@@ -111,8 +114,9 @@ map <leader>ag :Ag
 "Highlight trailing whitespace in red
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set listchars=tab:»·,trail:·
-" set list
-" hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
+set listchars=trail:·
+set list
+hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Switch between two files
@@ -179,6 +183,7 @@ let g:ctrlp_custom_ignore = {
       \ 'dir': '\v[\/]\.(dep)$',
       \ }
 
+" Rails
 map <leader>ac :CtrlP app/controllers<cr>
 map <leader>ai :CtrlP app/interactors<cr>
 map <leader>am :CtrlP app/models<cr>
@@ -190,6 +195,14 @@ map <leader>ti :CtrlP spec/interactors<cr>
 map <leader>tm :CtrlP spec/models<cr>
 map <leader>ts :CtrlP spec/serializers<cr>
 map <leader>tw :CtrlP spec/workers<cr>
+
+" Phoenix
+map <leader>pl :CtrlP lib<cr>
+map <leader>pw :CtrlP web<cr>
+map <leader>pc :CtrlP web/controllers<cr>
+map <leader>pm :CtrlP web/models<cr>
+map <leader>pv :CtrlP web/views<cr>
+map <leader>pt :CtrlP test<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "RuboCop
@@ -250,3 +263,8 @@ nmap <silent> <leader>TF :TestFile<CR>
 nmap <silent> <leader>TS :TestSuite<CR>
 nmap <silent> <leader>TL :TestLast<CR>
 nmap <silent> <leader>TV :TestVisit<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Vim GitGutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set updatetime=250

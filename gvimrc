@@ -11,5 +11,6 @@ set linespace =2
 "Highlight trailing whitespace in red
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set listchars=tab:»·,trail:·
-" set list
-" hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
+set listchars=trail:·
+set list
+hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
