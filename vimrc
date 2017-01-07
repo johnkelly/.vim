@@ -17,7 +17,7 @@ Plugin 'gmarik/vundle'
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'dockyard/vim-easydir'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/matchit.zip'
@@ -42,10 +42,16 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'ngmy/vim-rubocop'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"JS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'shutnik/jshint2.vim'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Clojure
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'tpope/vim-fireplace'
 Plugin 'eapache/rainbow_parentheses.vim'
+Plugin 'gregspurrier/vim-midje'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Golang
@@ -57,6 +63,11 @@ Plugin 'fatih/vim-go'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Rust
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'rust-lang/rust.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "General Settings
@@ -109,9 +120,9 @@ map <leader>ag :Ag
 "Highlight trailing whitespace in red
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set listchars=tab:»·,trail:·
-set listchars=trail:·
-set list
-hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
+" set listchars=trail:·
+" set list
+" hi SpecialKey ctermbg=red ctermfg=red guibg=red guifg=red
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Switch between two files
@@ -263,3 +274,13 @@ nmap <silent> <leader>TV :TestVisit<CR>
 "Vim GitGutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set updatetime=250
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Vim Alchemist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Rust
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rustfmt_autosave = 1
