@@ -42,18 +42,6 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'ngmy/vim-rubocop'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"JS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'shutnik/jshint2.vim'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Clojure
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'tpope/vim-fireplace'
-Plugin 'eapache/rainbow_parentheses.vim'
-Plugin 'gregspurrier/vim-midje'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Golang
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'fatih/vim-go'
@@ -63,11 +51,6 @@ Plugin 'fatih/vim-go'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Rust
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'rust-lang/rust.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "General Settings
@@ -189,27 +172,6 @@ let g:ctrlp_custom_ignore = {
       \ 'dir': '\v[\/]\.(dep)$',
       \ }
 
-" Rails
-map <leader>ac :CtrlP app/controllers<cr>
-map <leader>ai :CtrlP app/interactors<cr>
-map <leader>am :CtrlP app/models<cr>
-map <leader>as :CtrlP app/serializers<cr>
-map <leader>aw :CtrlP app/workers<cr>
-map <leader>av :CtrlP app/views<cr>
-map <leader>tc :CtrlP spec/controllers<cr>
-map <leader>ti :CtrlP spec/interactors<cr>
-map <leader>tm :CtrlP spec/models<cr>
-map <leader>ts :CtrlP spec/serializers<cr>
-map <leader>tw :CtrlP spec/workers<cr>
-
-" Phoenix
-map <leader>pl :CtrlP lib<cr>
-map <leader>pw :CtrlP web<cr>
-map <leader>pc :CtrlP web/controllers<cr>
-map <leader>pm :CtrlP web/models<cr>
-map <leader>pv :CtrlP web/views<cr>
-map <leader>pt :CtrlP test<cr>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "RuboCop
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -218,38 +180,7 @@ let g:vimrubocop_extra_args = '-R --require rubocop-rspec -a'
 nmap <Leader>ru :RuboCop<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"JSHint
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let jshint2_save = 0
-nmap <Leader>js :JSHint<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Clojure Rainbow Parens
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rbpt_colorpairs = [
-      \ ['brown',       'RoyalBlue3'],
-      \ ['Darkblue',    'SeaGreen3'],
-      \ ['darkgray',    'DarkOrchid3'],
-      \ ['darkgreen',   'firebrick3'],
-      \ ['darkcyan',    'RoyalBlue3'],
-      \ ['darkred',     'SeaGreen3'],
-      \ ['darkmagenta', 'DarkOrchid3'],
-      \ ['brown',       'firebrick3'],
-      \ ['gray',        'RoyalBlue3'],
-      \ ['black',       'SeaGreen3'],
-      \ ['darkmagenta', 'DarkOrchid3'],
-      \ ['Darkblue',    'firebrick3'],
-      \ ['darkgreen',   'RoyalBlue3'],
-      \ ['darkcyan',    'SeaGreen3'],
-      \ ['darkred',     'DarkOrchid3'],
-      \ ['red',         'firebrick3'],
-      \ ]
-let g:rbpt_max = 15
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Vim GO
+"Vim Go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>gd :GoDef<CR>
 nmap <Leader>gp :GoPath<CR>
@@ -279,8 +210,3 @@ set updatetime=250
 "Vim Alchemist
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Rust
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rustfmt_autosave = 1
